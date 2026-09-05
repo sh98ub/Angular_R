@@ -1,0 +1,207 @@
+<div class="container">
+
+  <h1>Student Management</h1>
+
+
+  <!-- ===================================== -->
+  <!-- MODERN @IF -->
+  <!-- ===================================== -->
+
+  @if (showStudents) {
+
+    <p class="message">
+      Student list is visible.
+    </p>
+
+  } @else {
+
+    <p class="message">
+      Student list is hidden.
+    </p>
+
+  }
+
+
+  <!-- ===================================== -->
+  <!-- PROPERTY + EVENT BINDING -->
+  <!-- ===================================== -->
+
+  <button
+    (click)="toggleStudents()">
+
+    {{ showStudents ? 'Hide Students' : 'Show Students' }}
+
+  </button>
+
+
+  <!-- ===================================== -->
+  <!-- ACTIVE STUDENT COUNT -->
+  <!-- ===================================== -->
+
+  <div class="summary">
+
+    <h2>
+      Active Students:
+      {{ getActiveStudentCount() }}
+    </h2>
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- MODERN @FOR -->
+  <!-- ===================================== -->
+
+  @if (showStudents) {
+
+    <div class="student-list">
+
+      @for (student of students; track student.id) {
+
+        <div
+          class="student-card"
+          [ngClass]="{
+            active: student.isActive,
+            inactive: !student.isActive
+          }">
+
+          <h2>
+            {{ student.name }}
+          </h2>
+
+
+          <p>
+            <strong>ID:</strong>
+            {{ student.id }}
+          </p>
+
+
+          <p>
+            <strong>Age:</strong>
+            {{ student.age }}
+          </p>
+
+
+          <p>
+            <strong>Course:</strong>
+            {{ student.course }}
+          </p>
+
+
+          <!-- ================================= -->
+          <!-- ngStyle -->
+          <!-- ================================= -->
+
+          <p
+            [ngStyle]="{
+              color: student.isActive ? 'green' : 'red',
+              'font-weight': 'bold'
+            }">
+
+            Status:
+            {{ student.isActive ? 'Active' : 'Inactive' }}
+
+          </p>
+
+
+          <!-- ================================= -->
+          <!-- OLD *ngIf -->
+          <!-- ================================= -->
+
+          <p *ngIf="student.age >= 23">
+            Student is 23 or older.
+          </p>
+
+
+          <!-- ================================= -->
+          <!-- EVENT BINDING -->
+          <!-- ================================= -->
+
+          <button
+            (click)="toggleStatus(student.id)">
+
+            Toggle Status
+
+          </button>
+
+
+          <button
+            (click)="deleteStudent(student.id)">
+
+            Delete
+
+          </button>
+
+        </div>
+
+
+      } @empty {
+
+        <div class="empty">
+
+          <h2>No students found.</h2>
+
+          <p>Please add students.</p>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- ===================================== -->
+  <!-- MODERN @IF / @ELSE IF -->
+  <!-- ===================================== -->
+
+  <div class="condition-example">
+
+    <h2>Course Information</h2>
+
+    @if (students.length >= 5) {
+
+      <p>
+        We have many students.
+      </p>
+
+    } @else if (students.length > 0) {
+
+      <p>
+        We have some students.
+      </p>
+
+    } @else {
+
+      <p>
+        No students available.
+      </p>
+
+    }
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- OLD *ngFor EXAMPLE -->
+  <!-- ===================================== -->
+
+  <h2>Old *ngFor Example</h2>
+
+  <ul>
+
+    <li
+      *ngFor="
+        let student of students;
+        let i = index
+      ">
+
+      {{ i + 1 }} -
+      {{ student.name }}
+
+    </li>
+
+  </ul>
+
+</div>
