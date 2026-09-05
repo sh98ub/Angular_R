@@ -1,0 +1,13 @@
+<h2>Students</h2>
+
+    @for (student of students; track student.id) {
+      <p>
+        {{ student.name }} - {{ student.age }}
+      </p>
+    }
+
+    <h3>new </h3>
+
+    <li *ngFor="let student of students">
+    {{ student.name }}
+  </li>
