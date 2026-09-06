@@ -13,4 +13,17 @@ export class StudentService {
   getStudents() {
     return this.students;
   }
+  addStudent(name: string,age: number){
+
+  const  newStudent={
+    id:this.students.length+1,
+    name:name,
+    age:age
+
+    };
+
+    this.students.push(newStudent);
+
+
+  }
 }
