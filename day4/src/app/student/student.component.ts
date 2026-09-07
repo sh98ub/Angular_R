@@ -18,7 +18,7 @@ export class StudentComponent {
 
   }
   addStuudent(){
-  this.studentService.addStudent('Shubham',25);
+  this.studentService.addStudent('Shubhama',25);
       this.students = this.studentService.getStudents();
 
   }
