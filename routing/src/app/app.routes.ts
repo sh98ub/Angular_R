@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 
 import { CourseComponent } from './course/course.component';
 import { ProfileComponent } from './profile/profile.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
  { path: '', component: HomeComponent },
@@ -14,10 +15,11 @@ export const routes: Routes = [
 { path: 'students/:id', component: StudentDetailsComponent,
   children:[
     {
-      path:'profile', component: ProfileComponent
+      path:'profile', component: ProfileComponent, canActivate:[authGuard]
     },
+
     {
-      path:'course', component:CourseComponent
+      path:'course', component:CourseComponent,canActivate:[authGuard]
     }
   ]
  },
