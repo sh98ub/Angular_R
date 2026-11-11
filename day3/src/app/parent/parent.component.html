@@ -1,0 +1,14 @@
+<h1>Parent Component</h1>
+
+<app-child
+	[studentName]="studentName"
+	[studentAge]="studentAge">
+</app-child>
+
+<h1>child to Parent</h1>
+
+<app-child
+  (clicked)="childClicked()">
+</app-child>
+
+<p>{{ message }}</p>

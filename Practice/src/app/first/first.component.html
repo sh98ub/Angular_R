@@ -1,0 +1,10 @@
+<p>first works!</p>
+
+
+@for(student of students; track  student){
+  <p>{{student.name}}</p>
+}
+
+<p *ngFor="let student of students">
+  {{student.name}}
+</p>
